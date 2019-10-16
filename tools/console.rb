@@ -17,7 +17,9 @@ vc3 = VentureCapitalist.new("Snow Dough", 100000)
 
 f1 = FundingRound.new(s1, vc1, "serie A", 10000)
 f2 = FundingRound.new(s2, vc3, "serie C", 100000)
-f3 = FundingRound.new(s3, vc2, "serie D", 1000)
+f3 = FundingRound.new(s1, vc2, "serie D", 9595590)
+f4 = FundingRound.new(s1, vc3, "serie D", 3000)
+f5 = FundingRound.new(s1, vc3, "serie D",  3500)
 
 
 

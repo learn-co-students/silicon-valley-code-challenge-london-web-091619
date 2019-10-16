@@ -32,7 +32,7 @@ class VentureCapitalist
 
     def portfolio
         #Returns a unique list of all startups this venture capitalist has funded
-        funding_rounds.map { |fr| fr.startup}
+        funding_rounds.map { |fr| fr.startup}.uniq
     end
 
     def biggest_investment
@@ -42,8 +42,8 @@ class VentureCapitalist
 
     def invested(domain)
         #given a domain string, returns the total amount invested in that domain
-        current_domain = self.funding_rounds.select { |fr| fr.startup.domain == domain}
-        current_domain.map { |round| round.investment}.sum
+        funding_rounds.select { |fr| fr.startup.domain == domain}.map { |fr| fr.investment}.sum
+
     end
 
 end

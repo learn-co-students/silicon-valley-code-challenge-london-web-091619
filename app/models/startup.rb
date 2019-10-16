@@ -17,7 +17,7 @@ class Startup
     end
 
     def pivot(domain, name)
-        @domain = domain
+        @domain= domain
         @name= name
     end
 
@@ -34,24 +34,32 @@ class Startup
         FundingRound.new(self, venture_capitalist, investment, amount_invested.to_f)
     end
 
+    def funding_rounds
+        FundingRound.all.select  { |fr| fr.startup == self}
+    end
+
     def num_of_funding_rounds
         #Returns the total number of funding rounds that the startup has gotten
-        FundingRound.all.select  { |fr| fr.startup == self}
+        funding_rounds.count
+    end
+
+    def investments
+        funding_rounds.map { |fr| fr.investment}
     end
 
     def total_funds
         #Returns the total sum of investments that the startup has gotten
-        num_of_funding_rounds.map { |fr| fr.investment}.sum
+        investments.sum
     end
 
     def investors
         # Returns a unique array of all the venture capitalists that have invested in this company
-        num_of_funding_rounds.map { |fr| fr.venture_capitalist}
+        funding_rounds.map { |fr| fr.venture_capitalist}.map { |fr| fr.name}.uniq
     end
 
     def big_investors
         #Returns a unique array of all the venture capitalists that have invested in this company and are in the Trés Commas club
-        investors.select { |vc| vc.total_worth > 1000000000}
+        funding_rounds.map { |fr| fr.venture_capitalist}.select { |vc| vc.total_worth > 1000000000}
     end
 
 end

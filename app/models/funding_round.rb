@@ -1,6 +1,6 @@
 class FundingRound
 
-    attr_reader :startup, :venture_capitalist, :investment
+    attr_reader :startup, :venture_capitalist, :investment, :type
     attr_accessor
 
     @@all = [ ]
